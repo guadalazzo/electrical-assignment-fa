@@ -1,167 +1,74 @@
-# Software Engineering React Assessment
+# The Fastned Charging Game
 
-**This is the Fastned software engineering assessment. The assessment is intended to give us insights into
-your technical abilities, engineering approach, and
-general technical working habits. We view your
-performance on this assessment as indicative of the
-work you will deliver as a Fastned software engineer.**
+**This is the Fastned React assessment. The assessment is intended to give us insights into your technical abilities, 
+engineering approach, and general technical working habits. We view your performance on this assessment as indicative of
+the work you will deliver as a Front End engineer.**
 
-The assessment consists of an assignment to prepare
-beforehand and a presentation about your implementation
-of the assignment at Fastned’s office or through video
-conference.
+The assessment consists of an assignment to prepare beforehand and a presentation about your implementation of the 
+assignment at Fastned’s office or through video conference.
 
-We expect that you’ll need about 5 to 8 hours to prepare
-for the assessment. We ask you to treat the assessment
-confidential so we can use it again in the future.
+We ask you to treat the assessment confidential so we can use it again in the future. Please submit your solution 
+when you think it's ready.
 
----
+---------------
 
-## Assignment
+## The Charging Game
+You'll design and implement The Fastned Charging Game. The goal of the game is to provide electricity from our charger 
+to your electrical vehicle (EV) as fast as possible. When the user starts a new game, a timer will run to measure how 
+long it takes you to create an electric circuit from the **charger** to the **car**. As soon as the circuit is 
+established, the timer will stop and your name and time will be added to the leaderboard. The game will show the names 
+of the top 5 players with their fastest time.
 
-In an ongoing push to make the world greener, Fastned is investing in a digital product that provides Fastned employees control over Fastned locations. The Product Owner has passed you some stories and is expecting you to come up with a great solution.
+The **game board** consists of 9 cells, each containing an electrical cable. The charger is connected to the left side 
+of the top left cell. The car is connected to the right side of the bottom right cell.
 
-### The stories
+| **Charger →** | **cell** | **cell** | **cell** |           |
+|---------------|----------|----------|----------|-----------|
+|               | **cell** | **cell** | **cell** |           |
+|               | **cell** | **cell** | **cell** | **→ Car** | 
 
-* **Location list screen**: As Fastned we want a screen that lists all our locations so we can get an overview of the locations in the network.
+Each **cell** contains an electrical **cable** connecting 2 sides of the **cell** in either a 90 degree angle or in a 
+straight line:
 
-* **Add/Edit Location**: As Fastned we want to be able to manage the locations in our network.
+* `-`
+* `|`
+* `┐`
+* `└`
+* `┘`
+* `┌`
 
-* **Add/Edit Charger**: As Fastned we want to be able to add/edit/delete chargers to any of those locations
+The cable in the cell can be rotated at 90 degree increments to connect different **sides** of each cell.
 
-You can find more details about those screens on the following pages. We love creative ideas and just feel free to come up with your own UI / UX design.
+## Requirements
+* Create the game using React (components)
+* The game grid is a 3 by 3 grid of cells, each containing a (part of) a cable. The cables can be rotated by the player in steps of 90 degree increments.
+* The game should detect when there is a full circuit from the charger to the car, stop the timer and add the user to the leaderboard.
+* Every game should generate a new (and solvable) puzzle.
+* The user should be able to restart the game during or after playing the game.
+* A timer is showing how long the current game is taking. The user also needs to provide their (nick)name to use for the leaderboard.
+* Our designer made the design for the charger component (you can find it in this repository) and your job is to build this component pixel perfect.
+* The rest of the design is up to you. Feel free to make it as fancy as you want, if you want to show off a bit.
+* Make sure there are component tests for the cell component containing the (partly) charger cable covering all of its functionality.
+* Project should be written in Typescript.
+* Project should have ESLint & prettier setup.
+* Project should use React Queries (v4 or above) for the API requests.
+* Take into consideration while building the game:
+  * Readability and comprehensibility of the code (Clean code)
+  * Testing your solution (e.g Unit testing)
+  * Conscious design/technical decisions
+* Big plusses are:
+  * Using Next.js
+  * Using Tailwind
 
-### Location list screen
+## Leaderboard service
+Your application can interact with the leaderboard service. This service is available in the repository and can be 
+started with Docker. The service provides 3 URLs:
 
-A screen contains the list of locations. Should have an edit button per item and that button should navigate the user to the Edit view of the selected location. This view should also include an Add location button to be able to create new locations.
+`GET: /leaderboard` Returns the top 5 players with their names and time
 
-**Acceptance Criteria:**
+`POST: /leaderboard` Add the time and name of a player to the leaderboard service
 
-The list should show the following data
+`DELETE: /leaderboard` Remove all times from the leaderboard, so the top 5 is empty. This can be useful if you want to 
+reset the leaderboard while implementing your solution.
 
-* Location Name
-* Location No
-* Total number of chargers added to the location
-* Country (as ISO 3166-1 alpha-3)
-* Last updated (as the distance from now such as 3 days ago, 1 min ago, etc.)
-* Edit / Remove button to be able to remove a specific location
-* Add location button to be able to add a new location
-* List should list the items as Card design below in a grid
-* Card should be a reusable stateless component
-
-**Card Design:**
-
-This is an example of a location card. Feel free to use any other icons or add your own flavor to the design. **Please make sure that you don’t use any library for this card design. **
-
-![alt_text](README-image1.png "Location card")
-
-### Add location screen
-
-This should be a form screen where users can enter the various details of the location.
-
-Users should also be able to add/edit/remove a charger to a location (if they want) while creating the location.
-
-**Acceptance Criteria:**
-
-The form should show the following inputs
-
-* Location (data model can be found on page 6)
-    * Location Name (validation min 3 characters)
-    * Location No (validation number only)
-    * City (validation min 3 characters)
-    * Postal Code (validation only numbers or digits)
-    * Country (dropdown)
-* Charger (data model can be found on page 6)
-    * Status (dropdown)
-    * Charger Type (dropdown)
-    * Serial Number (validation min 5 characters)
-
-Make sure that user can add/edit or remove a charger while adding a location to the system. Chargers should be part of location data and can not be stored as different entities.
-
-### Edit location screen
-
-This should be a form screen where users can edit various location details.
-
-**Acceptance Criteria:**
-
-The form should show the following inputs
-
-* Location (data model can be found on page 6)
-    * Location Name (validation min 3 characters)
-    * Location No (validation number only)
-    * City (validation min 3 characters)
-    * Postal Code (validation only numbers or digits)
-    * Country (dropdown)
-* Chargers List (data model can be found on page 6)
-    * Id
-    * Status (dropdown)
-    * Charger Type (dropdown)
-    * Serial Number (validation min 5 characters)
-
-Make sure that user can add/edit or remove a charger while editing a location in the system. Chargers should be part of location data and can not be stored as different entities.
-
-### Data Models
-
-Locations Model
-
-```
-{
-  id: number;
-  name: string;
-  location: number;
-  chargers: Charger[];
-  postalCode: string;
-  lastUpdated: string;
-  city: string;
-  country: string; // ISO 3166-1 alpha-3
-}[]
-```
-
-Charger Model
-
-```
-{
-  id: number;
-  type: "HPC" | "T52" | "T53C";
-  serialNumber: string;
-  status: "CONNECTED" | "NOT_CONNECTED" | "REMOVED";
-  lastUpdated: string;
-}
-```
-
-### Architecture
-
-We love reading README files, especially the ones that have clear instructions on how to start/run the projects. Make sure that anyone with even a tiny bit of experience can successfully run the project by following the readme file.
-
-* Project should be delivered as Git repository
-* Project should be done in React
-* Use functional components instead of class components
-* Project should be written in Typescript
-* Project should have ESLint & prettier setup
-* Project should use React Queries for the API requests
-* Forms should have validation
-
-**Bonus Points**
-
-* Using React Hook Forms
-* Adding some tests
-* Mobile / tablet support
-
-**How to store the data?**
-
-* You can use a NodeJS / Express server and store the data and have that as a separate project.
-* You don't have to deal with any database solutions to handle the data storage
-* If you decide to use Redis, Mongo DB, or equivalent to store the data please make sure that you also provide a docker-compose file within the project.
-
-**FAQ**
-
-* Can I use Next JS or equivalent? \
-  Yes, feel free to use any SSR framework if you don’t want to deal with multiple projects for the front end and server side.
-* Can I use Angular, Vue, or any other framework other than React? \
-  No, the project should be done in React.
-* Can I use any UI libraries for HTML elements? \
-  Yes, you can use any UI library you prefer.
-* Can I use Redux, Zustand, or equivalent to manage the data in UI? \
-  No, please use React Query
-* Can I suppress any ESLint errors? \
-  No, but if you have to there should be a proper reason behind it and you should have a comment in the code for that.
+You can find more information about how to start this service locally in the README.md file of the leaderboard directory.
