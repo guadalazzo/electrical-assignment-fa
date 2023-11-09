@@ -17,7 +17,8 @@ You'll design and implement The Fastned Charging Game. The goal of the game is t
 to your electrical vehicle (EV) as fast as possible. When the user starts a new game, a timer will run to measure how 
 long it takes you to create an electric circuit from the **charger** to the **car**. As soon as the circuit is 
 established, the timer will stop and your name and time will be added to the leaderboard. The game will show the names 
-of the top 5 players with their fastest time.
+of the top 5 players with their fastest time. You can use the [Leaderboard service](#leaderboard-service) to submit scores and retrieve the top
+players.
 
 The **game board** consists of 9 cells, each containing an electrical cable. The charger is connected to the left side 
 of the top left cell. The car is connected to the right side of the bottom right cell.
@@ -40,13 +41,15 @@ straight line:
 The cable in the cell can be rotated at 90 degree increments to connect different **sides** of each cell.
 
 ## Requirements
-* Create the game using React (components)
+* Create the game using React (components).
 * The game grid is a 3 by 3 grid of cells, each containing a (part of) a cable. The cables can be rotated by the player in steps of 90 degree increments.
 * The game should detect when there is a full circuit from the charger to the car, stop the timer and add the user to the leaderboard.
-* Every game should generate a new (and solvable) puzzle.
-* The user should be able to restart the game during or after playing the game.
+* Every game should generate a new random puzzle.
+  * The puzzle doesn't have to be solvable, because this can be quite complex.
+  * When you have time remaining or just want to impress us, you can generate a random AND solvable puzzle.
 * A timer is showing how long the current game is taking. The user also needs to provide their (nick)name to use for the leaderboard.
-* Our designer made the design for the charger component (you can find it in this repository) and your job is to build this component pixel perfect.
+* When the puzzle is solved (electricity can flow from the charger to the car), the (nick)name is send to the [Leaderboard service](#leaderboard-service), so it will show on the page.
+* Our designer made the design for the [charger component](https://www.figma.com/file/zCsqKGsDDXSZQJocQyZVmk/FE-task?type=design&node-id=2582%3A13843&mode=design&t=FyTGWMo2MX31Ywfp-1) (Password: `wechargefast`) and your job is to build this component pixel perfect.
 * The rest of the design is up to you. Feel free to make it as fancy as you want, if you want to show off a bit.
 * Make sure there are component tests for the cell component containing the (partly) charger cable covering all of its functionality.
 * Project should be written in Typescript.
@@ -56,12 +59,12 @@ The cable in the cell can be rotated at 90 degree increments to connect differen
   * Readability and comprehensibility of the code (Clean code)
   * Testing your solution (e.g Unit testing)
   * Conscious design/technical decisions
-* Big plusses are:
+* Big plus:
   * Using Next.js
   * Using Tailwind
 
 ## Leaderboard service
-Your application can interact with the leaderboard service. This service is available in the repository and can be 
+Your application can interact with the leaderboard service. This service is available in the [repository](./leaderboard) and can be 
 started with Docker. The service provides 3 URLs:
 
 `GET: /leaderboard` Returns the top 5 players with their names and time
@@ -71,4 +74,4 @@ started with Docker. The service provides 3 URLs:
 `DELETE: /leaderboard` Remove all times from the leaderboard, so the top 5 is empty. This can be useful if you want to 
 reset the leaderboard while implementing your solution.
 
-You can find more information about how to start this service locally in the README.md file of the leaderboard directory.
+You can find more information about how to start this service locally in the [README.md](./leaderboard/README.md) file of the leaderboard directory.
