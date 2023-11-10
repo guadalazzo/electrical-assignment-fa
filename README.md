@@ -42,7 +42,7 @@ The cable in the cell can be rotated at 90 degree increments to connect differen
 
 ## Requirements
 * Create the game using React (components).
-* The game grid is a 3 by 3 grid of cells, each containing a (part of) a cable. The cables can be rotated by the player in steps of 90 degree increments.
+* The game grid is a 3 by 3 grid of cells, each containing a (part of the) cable. The cables can be rotated by the player in steps of 90 degree increments.
 * The game should detect when there is a full circuit from the charger to the car, stop the timer and add the user to the leaderboard.
 * Every game should generate a new random puzzle.
   * The puzzle doesn't have to be solvable, because this can be quite complex.
