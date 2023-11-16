@@ -50,7 +50,7 @@ The cable in the cell can be rotated at 90 degree increments to connect differen
 * A timer is showing how long the current game is taking. The user also needs to provide their (nick)name to use for the leaderboard.
 * When the puzzle is solved (electricity can flow from the charger to the car), the (nick)name is send to the [Leaderboard service](#leaderboard-service), so it will show on the page.
 * Our designer made the design for the [charger component](https://www.figma.com/file/zCsqKGsDDXSZQJocQyZVmk/FE-task?type=design&node-id=2582%3A13843&mode=design&t=FyTGWMo2MX31Ywfp-1) (Password: `wechargefast`) and your job is to build this component pixel perfect.
-* The rest of the design is up to you. Feel free to make it as fancy as you want, if you want to show off a bit.
+* **The rest of the game design and logic is up to you**. Feel free to make it as fancy as you want, if you want to show off a bit.
 * Make sure there are component tests for the cell component containing the (partly) charger cable covering all of its functionality.
 * Project should be written in Typescript.
 * Project should have ESLint & prettier setup.
