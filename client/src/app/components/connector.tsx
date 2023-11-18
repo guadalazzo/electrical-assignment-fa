@@ -1,16 +1,30 @@
 "use client";
-import Image from "next/image";
 import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setConnector } from "../redux";
 
-const Connector = ({ name, image }: { name: string; image: string }) => {
-  const [selected, setSelected] = useState(false);
+import Image from "next/image";
 
+const Connector = ({
+  name,
+  image,
+  selected,
+}: {
+  name: string;
+  image: string;
+  selected: boolean;
+}) => {
+  const [select, setSelect] = useState(false);
+  const dispatch = useDispatch();
   const handleClick = useCallback(
     (e) => {
       e.preventDefault();
-      setSelected((state) => !state);
+      setSelect((state) => !state);
+
+      dispatch(setConnector({ name, image, selected: select }));
+      // check that the connector is on the list and change the selected variable
     },
-    [setSelected]
+    [setSelect]
   );
 
   if (selected) {

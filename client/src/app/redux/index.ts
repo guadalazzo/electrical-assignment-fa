@@ -1,23 +1,35 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ConnectorState {
-  connectors: string[];
+export interface ConnectorState {
+  connectorsList: { name: string; image: string; selected: boolean }[];
 }
 const initialState: ConnectorState = {
-  connectors: [],
+  connectorsList: [
+    { name: "CCS", image: "ccs", selected: false },
+    { name: "CHAdeMO", image: "chademo", selected: false },
+    { name: "AC", image: "ac", selected: false },
+  ],
 };
 
 const connectorSlice = createSlice({
   name: "connector",
   initialState,
   reducers: {
-    setConnectors: (state, action: PayloadAction<string[]>) => {
-      return { ...state, connectors: action.payload };
+    setConnector: (state, action) => {
+      const auxConnector = action.payload;
+      const connectorIndex = state.connectorsList.findIndex(
+        (connector) => connector.name === auxConnector.name
+      );
+      state.connectorsList.forEach((connector) => (connector.selected = false));
+      if (connectorIndex !== -1) {
+        state.connectorsList[connectorIndex].selected =
+          !state.connectorsList[connectorIndex].selected;
+      }
     },
   },
 });
 
-export const { setConnectors } = connectorSlice.actions;
+export const { setConnector } = connectorSlice.actions;
 
 const connectorReducer = connectorSlice.reducer;
 
