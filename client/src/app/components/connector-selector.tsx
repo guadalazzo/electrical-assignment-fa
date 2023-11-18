@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Connector from "./connector";
+import { useSelector } from "react-redux";
+
 const ConnectorSelector = () => {
+  const connectors = useSelector((state) => state.connectors);
   return (
     <section className="flex flex-col items-center ">
       <div className="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly">

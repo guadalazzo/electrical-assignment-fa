@@ -1,6 +1,6 @@
 import Header from "./header";
 import Head from "next/head";
-
+import { ReduxProvider } from "../redux/redux-provider";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Head>
       <main className="flex min-h-screen flex-col items-center">
         <Header />
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </main>
     </>
   );
