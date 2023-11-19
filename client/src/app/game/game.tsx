@@ -3,35 +3,44 @@ import Cell from "../components/cell";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-
+import { pathRow } from "../redux";
+import { useEffect, useState } from "react";
 const GameContainter = () => {
+  const [isValidFlow, setIsValidFlow] = useState(false);
   const selectedConnector = useSelector(
     (state) => state.connectors.selectedConnector
   );
+  const validPath = useSelector((state) => state.connectors.validPath);
   const router = useRouter();
 
-  const firstRow = [
-    { value: "-", position: 0 },
-    { value: "-", position: 0 },
-    { value: "┐", position: 0 },
-  ];
-  const secondRow = [
-    { value: "┌", position: 0 },
-    { value: "-", position: 0 },
-    { value: "┘", position: 0 },
-  ];
-  const thirdRow = [
-    { value: "└", position: 0 },
-    { value: "-", position: 0 },
-    { value: "-", position: 0 },
-  ];
   if (!selectedConnector) {
     router.push("/");
     return null;
   }
+
+  useEffect(() => {
+    // check rows valid positions
+    if (
+      validPath["row1"].every((elem: pathRow) =>
+        elem.validPositions.includes(elem.position)
+      ) &&
+      validPath["row2"].every((elem: pathRow) =>
+        elem.validPositions.includes(elem.position)
+      ) &&
+      validPath["row3"].every((elem: pathRow) =>
+        elem.validPositions.includes(elem.position)
+      )
+    ) {
+      setIsValidFlow(true);
+    } else {
+      setIsValidFlow(false);
+    }
+  }, [validPath]);
+
   return (
     <>
-      <div className="grid grid-cols-5 gap-4">
+      {isValidFlow && <div>ready</div>}
+      <div className="grid grid-cols-5 gap-1">
         <div className="flex justify-center items-center">
           <Image
             src={`/${selectedConnector?.image}.svg`}
@@ -41,23 +50,23 @@ const GameContainter = () => {
             priority
           />
         </div>
-        {firstRow.map((cable) => {
-          return <Cell>{cable.value}</Cell>;
+        {validPath["row1"].map((cable: pathRow) => {
+          return <Cell row={"row1"} key={cable.key} cable={cable} />;
         })}
         <div></div>
       </div>
 
-      <div className="grid grid-cols-5 gap-4 mt-4">
+      <div className="grid grid-cols-5 gap-1 mt-1">
         <div></div>
-        {secondRow.map((cable) => {
-          return <Cell>{cable.value}</Cell>;
+        {validPath["row2"].map((cable: pathRow) => {
+          return <Cell row={"row2"} key={cable.key} cable={cable} />;
         })}
         <div></div>
       </div>
-      <div className="grid grid-cols-5 gap-4 mt-4">
+      <div className="grid grid-cols-5 gap-1 mt-1">
         <div></div>
-        {thirdRow.map((cable) => {
-          return <Cell>{cable.value}</Cell>;
+        {validPath["row3"].map((cable: pathRow) => {
+          return <Cell row={"row3"} key={cable.key} cable={cable} />;
         })}
         <div className="flex justify-center items-center">
           <Image
