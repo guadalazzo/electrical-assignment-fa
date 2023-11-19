@@ -41,7 +41,7 @@ const Cell = ({
       // it only has 4 positions so I use Module
       changePosition({ row, key: cable.key, newPosition: auxPosValue % 4 })
     );
-  }, [cable]);
+  }, [cable, row]);
 
   return (
     <div

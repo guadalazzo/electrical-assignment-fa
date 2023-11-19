@@ -75,3 +75,32 @@ started with Docker. The service provides 3 URLs:
 reset the leaderboard while implementing your solution.
 
 You can find more information about how to start this service locally in the [README.md](./leaderboard/README.md) file of the leaderboard directory.
+
+## Steps to start the project
+
+Move to client and run server 
+
+```bash
+
+cd client
+
+npm run dev
+
+```
+Open a new terminal an run docker
+
+```
+docker build . --tag leaderboard
+```
+
+```
+docker run -p 12345:12345 leaderboard
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+To run the tests
+
+```
+npm run test
+```

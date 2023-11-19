@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { timeRecord, ConnectorState } from "../redux/types";
@@ -40,18 +40,21 @@ const RegisterTime = () => {
       queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
     },
   });
-  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(false);
-    if (e.currentTarget.nickname.value) {
-      const value = e.currentTarget.nickname.value;
-      mutation.mutate({ name: value, seconds: currentTime });
-      dispatch(setNameAndTime({ name: value, seconds: currentTime }));
-    } else {
-      setError(true);
-      return;
-    }
-  };
+  const handleSubmit = useCallback(
+    (e: React.SyntheticEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setError(false);
+      if (e.currentTarget.nickname.value) {
+        const value = e.currentTarget.nickname.value;
+        mutation.mutate({ name: value, seconds: currentTime });
+        dispatch(setNameAndTime({ name: value, seconds: currentTime }));
+      } else {
+        setError(true);
+        return;
+      }
+    },
+    [mutation, currentTime]
+  );
   return (
     <form onSubmit={handleSubmit} className="mt-5 flex flex-col items-center">
       <label>

@@ -1,10 +1,5 @@
 "use client";
-import {
-  ButtonHTMLAttributes,
-  ReactEventHandler,
-  useCallback,
-  useState,
-} from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setConnector } from "../redux";
 
@@ -28,7 +23,7 @@ const Connector = ({
       // check that the connector is on the list and change the selected variable
       dispatch(setConnector({ name, image, selected: select }));
     },
-    [setSelect]
+    [setSelect, name, image, select]
   );
 
   if (selected) {

@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Connector from "./connector";
 import { useSelector } from "react-redux";
@@ -27,16 +27,19 @@ const ConnectorSelector = () => {
     }
   }, [connectorSelected]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(false);
-    if (!connectorSelected) {
-      setError(true);
-      return;
-    }
-    dispatch(setSelectedConnector(connectorSelected));
-    router.push("/game");
-  };
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setError(false);
+      if (!connectorSelected) {
+        setError(true);
+        return;
+      }
+      dispatch(setSelectedConnector(connectorSelected));
+      router.push("/game");
+    },
+    [connectorSelected, setError]
+  );
 
   return (
     <form className="flex flex-col items-center " onSubmit={handleSubmit}>
