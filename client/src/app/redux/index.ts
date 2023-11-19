@@ -1,7 +1,10 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export type connectorType = { name: string; image: string; selected: boolean };
+
 export interface ConnectorState {
-  connectorsList: { name: string; image: string; selected: boolean }[];
+  connectorsList: connectorType[];
+  selectedConnector?: connectorType;
 }
 const initialState: ConnectorState = {
   connectorsList: [
@@ -26,10 +29,13 @@ const connectorSlice = createSlice({
           !state.connectorsList[connectorIndex].selected;
       }
     },
+    setSelectedConnector: (state, action) => {
+      state.selectedConnector = action.payload;
+    },
   },
 });
 
-export const { setConnector } = connectorSlice.actions;
+export const { setConnector, setSelectedConnector } = connectorSlice.actions;
 
 const connectorReducer = connectorSlice.reducer;
 

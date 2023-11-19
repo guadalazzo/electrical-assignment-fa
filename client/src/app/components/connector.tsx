@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setConnector } from "../redux";
 
 import Image from "next/image";
@@ -20,9 +20,8 @@ const Connector = ({
     (e) => {
       e.preventDefault();
       setSelect((state) => !state);
-
-      dispatch(setConnector({ name, image, selected: select }));
       // check that the connector is on the list and change the selected variable
+      dispatch(setConnector({ name, image, selected: select }));
     },
     [setSelect]
   );
@@ -36,7 +35,7 @@ const Connector = ({
         <p className="text-sm">{name}</p>
         <Image
           src={`/${image}.svg`}
-          alt="Fastned Logo"
+          alt={`${name} connector`}
           width={38}
           height={33}
           priority

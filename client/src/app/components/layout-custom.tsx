@@ -1,7 +1,11 @@
 import Header from "./header";
 import Head from "next/head";
 import { ReduxProvider } from "../redux/redux-provider";
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function LayoutCustom({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <Head>
