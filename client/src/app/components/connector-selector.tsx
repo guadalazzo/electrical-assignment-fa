@@ -1,5 +1,5 @@
 "use client";
-
+import { FormEvent } from "react";
 import Image from "next/image";
 import Connector from "./connector";
 import { useSelector } from "react-redux";
@@ -7,8 +7,7 @@ import { connectorType, ConnectorState } from "../redux/types";
 import { useDispatch } from "react-redux";
 import { setSelectedConnector } from "../redux";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
-
+import Button from "./button";
 const ConnectorSelector = () => {
   const connectorsList = useSelector(
     (state: { connectors: ConnectorState }) => state.connectors.connectorsList
@@ -54,9 +53,7 @@ const ConnectorSelector = () => {
           })}
         </div>
       </div>
-      <button className="w-[188px] bg-[#F3F4F6] border-[3px] border-[#D2D5DA] hover:border-[#374151] font-medium py-[13px] px-[20px] rounded-[25px] text-[#9CA3AF] hover:text-[#374151] mt-[40px]">
-        Start your session
-      </button>
+      <Button>Start your session</Button>
     </form>
   );
 };

@@ -1,11 +1,17 @@
 "use client";
 import Cell from "../components/cell";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { pathRow, ConnectorState } from "../redux/types";
 import { useEffect, useState } from "react";
+import Timer from "../components/timer";
+import RegisterTime from "../components/register-time";
+
+import { validFlow } from "../redux";
+
 const GameContainter = () => {
+  const dispatch = useDispatch();
   const [isValidFlow, setIsValidFlow] = useState(false);
   const selectedConnector = useSelector(
     (state: { connectors: ConnectorState }) =>
@@ -16,10 +22,11 @@ const GameContainter = () => {
   );
   const router = useRouter();
 
-  if (!selectedConnector) {
-    router.push("/");
-    return null;
-  }
+  useEffect(() => {
+    if (!selectedConnector) {
+      router.push("/");
+    }
+  }, [selectedConnector]);
 
   useEffect(() => {
     // check rows valid positions
@@ -35,14 +42,16 @@ const GameContainter = () => {
       )
     ) {
       setIsValidFlow(true);
+      dispatch(validFlow(true));
     } else {
+      dispatch(validFlow(false));
       setIsValidFlow(false);
     }
   }, [validPath]);
 
   return (
     <>
-      {isValidFlow && <div>ready</div>}
+      <Timer />
       <div className="grid grid-cols-5 gap-1">
         <div className="flex justify-center items-center">
           <Image
@@ -81,6 +90,7 @@ const GameContainter = () => {
           />
         </div>
       </div>
+      {isValidFlow && <RegisterTime />}
     </>
   );
 };

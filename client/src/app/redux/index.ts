@@ -102,11 +102,22 @@ const connectorSlice = createSlice({
       state.validPath[action.payload.row][indexToModify].position =
         action.payload.newPosition;
     },
+    validFlow: (state, action) => {
+      state.validFlow = action.payload;
+    },
+    registerTime: (state, action) => {
+      state.currentTime = action.payload;
+    },
   },
 });
 
-export const { setConnector, setSelectedConnector, changePosition } =
-  connectorSlice.actions;
+export const {
+  setConnector,
+  setSelectedConnector,
+  changePosition,
+  validFlow,
+  registerTime,
+} = connectorSlice.actions;
 
 const connectorReducer = connectorSlice.reducer;
 
