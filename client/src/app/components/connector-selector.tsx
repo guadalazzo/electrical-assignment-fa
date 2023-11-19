@@ -3,20 +3,21 @@
 import Image from "next/image";
 import Connector from "./connector";
 import { useSelector } from "react-redux";
-import { connectorType } from "../redux";
+import { connectorType, ConnectorState } from "../redux/types";
 import { useDispatch } from "react-redux";
 import { setSelectedConnector } from "../redux";
 import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 
 const ConnectorSelector = () => {
   const connectorsList = useSelector(
-    (state) => state.connectors.connectorsList
+    (state: { connectors: ConnectorState }) => state.connectors.connectorsList
   );
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const connectorSelected = connectorsList.find(
       (elem: connectorType) => elem.selected

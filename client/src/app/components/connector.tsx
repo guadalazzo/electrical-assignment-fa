@@ -1,5 +1,10 @@
 "use client";
-import { useCallback, useState } from "react";
+import {
+  ButtonHTMLAttributes,
+  ReactEventHandler,
+  useCallback,
+  useState,
+} from "react";
 import { useDispatch } from "react-redux";
 import { setConnector } from "../redux";
 
@@ -17,7 +22,7 @@ const Connector = ({
   const [select, setSelect] = useState(false);
   const dispatch = useDispatch();
   const handleClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       setSelect((state) => !state);
       // check that the connector is on the list and change the selected variable

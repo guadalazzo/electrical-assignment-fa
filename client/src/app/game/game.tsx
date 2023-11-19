@@ -3,14 +3,17 @@ import Cell from "../components/cell";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { pathRow } from "../redux";
+import { pathRow, ConnectorState } from "../redux/types";
 import { useEffect, useState } from "react";
 const GameContainter = () => {
   const [isValidFlow, setIsValidFlow] = useState(false);
   const selectedConnector = useSelector(
-    (state) => state.connectors.selectedConnector
+    (state: { connectors: ConnectorState }) =>
+      state.connectors.selectedConnector
   );
-  const validPath = useSelector((state) => state.connectors.validPath);
+  const validPath = useSelector(
+    (state: { connectors: ConnectorState }) => state.connectors.validPath
+  );
   const router = useRouter();
 
   if (!selectedConnector) {

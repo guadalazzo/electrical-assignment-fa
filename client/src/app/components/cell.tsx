@@ -1,10 +1,16 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { pathRow } from "../redux";
+import { pathRow } from "../redux/types";
 import { changePosition } from "../redux";
 
-const Cell = ({ cable, row }: { cable: pathRow; row: string }) => {
+const Cell = ({
+  cable,
+  row,
+}: {
+  cable: pathRow;
+  row: "row1" | "row2" | "row3";
+}) => {
   const dispatch = useDispatch();
   const [rotateValue, setRotateValue] = useState("");
   useEffect(() => {
