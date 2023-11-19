@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import Connector from "./connector";
 import { useSelector } from "react-redux";
@@ -8,22 +8,36 @@ import { useDispatch } from "react-redux";
 import { setSelectedConnector } from "../redux";
 import { useRouter } from "next/navigation";
 import Button from "./button";
+import ErrorLabel from "./error-label";
+
 const ConnectorSelector = () => {
+  const [error, setError] = useState(false);
   const connectorsList = useSelector(
     (state: { connectors: ConnectorState }) => state.connectors.connectorsList
   );
-
+  const connectorSelected = connectorsList.find(
+    (elem: connectorType) => elem.selected
+  );
   const dispatch = useDispatch();
   const router = useRouter();
 
+  useEffect(() => {
+    if (connectorSelected) {
+      setError(false);
+    }
+  }, [connectorSelected]);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const connectorSelected = connectorsList.find(
-      (elem: connectorType) => elem.selected
-    );
+    setError(false);
+    if (!connectorSelected) {
+      setError(true);
+      return;
+    }
     dispatch(setSelectedConnector(connectorSelected));
     router.push("/game");
   };
+
   return (
     <form className="flex flex-col items-center " onSubmit={handleSubmit}>
       <div className="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly">
@@ -54,6 +68,7 @@ const ConnectorSelector = () => {
         </div>
       </div>
       <Button>Start your session</Button>
+      {error && <ErrorLabel title="Please select an option to continue" />}
     </form>
   );
 };

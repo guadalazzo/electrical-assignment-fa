@@ -35,6 +35,7 @@ const Connector = ({
     return (
       <button
         onClick={handleClick}
+        data-testid={`button-${name}-selected`}
         className="flex flex-col items-center place-content-evenly w-[84px] h-[104px] bg-yellow-600 rounded font-medium border-2 border-[#1F2937]"
       >
         <p className="text-sm">{name}</p>
@@ -54,13 +55,14 @@ const Connector = ({
 
   return (
     <button
+      data-testid={`button ${name}`}
       onClick={handleClick}
       className="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
     >
       <p className="text-sm">{name}</p>
       <Image
         src={`/${image}.svg`}
-        alt="Fastned Logo"
+        alt={`${name} connector`}
         width={38}
         height={33}
         priority

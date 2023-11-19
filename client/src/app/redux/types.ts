@@ -13,6 +13,7 @@ export interface ConnectorState {
   validPath: { row1: pathRow[]; row2: pathRow[]; row3: pathRow[] };
   validFlow?: boolean;
   currentTime?: number;
+  currentUser?: timeRecord;
 }
 export interface ChangePositionPayload {
   row: "row1" | "row2" | "row3";

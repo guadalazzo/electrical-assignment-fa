@@ -108,6 +108,9 @@ const connectorSlice = createSlice({
     registerTime: (state, action) => {
       state.currentTime = action.payload;
     },
+    setNameAndTime: (state, action) => {
+      state.currentUser = action.payload;
+    },
   },
 });
 
@@ -117,6 +120,7 @@ export const {
   changePosition,
   validFlow,
   registerTime,
+  setNameAndTime,
 } = connectorSlice.actions;
 
 const connectorReducer = connectorSlice.reducer;

@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Leaderboard unchanged 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center"
+  >
+    <header
+      class="h-[112px] p-[44px]"
+    >
+      <img
+        alt="Fastned Logo"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="24"
+        src="/fastned.svg"
+        style="color: transparent;"
+        width="184"
+      />
+    </header>
+    <h2
+      class="text-xl w-[232px] text-center m-4"
+    >
+      Leaderboard
+    </h2>
+    <table
+      class="table-auto bg-yellow-100  text-center w-4/5 border-[3px] border-[#243c5a] rounded"
+    >
+      <thead
+        class="border-[3px] border-[#243c5a]"
+      >
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Seconds
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </main>
+</div>
+`;
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <main
+    class="flex min-h-screen flex-col items-center"
+  >
+    <header
+      class="h-[112px] p-[44px]"
+    >
+      <img
+        alt="Fastned Logo"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="24"
+        src="/fastned.svg"
+        style="color: transparent;"
+        width="184"
+      />
+    </header>
+    <form
+      class="flex flex-col items-center "
+    >
+      <div
+        class="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly"
+      >
+        <div
+          class="flex flex-col items-center"
+        >
+          <img
+            alt="Fastned Logo"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="56"
+            src="/lightning.svg"
+            style="color: transparent;"
+            width="56"
+          />
+          <h2
+            class="text-xl w-[232px] text-center"
+          >
+            Select your 
+            <b>
+              connector type...
+            </b>
+          </h2>
+        </div>
+        <div
+          class="flex space-between gap-[10px]"
+        >
+          <button
+            class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
+            data-testid="button CCS"
+          >
+            <p
+              class="text-sm"
+            >
+              CCS
+            </p>
+            <img
+              alt="CCS connector"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="33"
+              src="/ccs.svg"
+              style="color: transparent;"
+              width="38"
+            />
+          </button>
+          <button
+            class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
+            data-testid="button CHAdeMO"
+          >
+            <p
+              class="text-sm"
+            >
+              CHAdeMO
+            </p>
+            <img
+              alt="CHAdeMO connector"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="33"
+              src="/chademo.svg"
+              style="color: transparent;"
+              width="38"
+            />
+          </button>
+          <button
+            class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
+            data-testid="button AC"
+          >
+            <p
+              class="text-sm"
+            >
+              AC
+            </p>
+            <img
+              alt="AC connector"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="33"
+              src="/ac.svg"
+              style="color: transparent;"
+              width="38"
+            />
+          </button>
+        </div>
+      </div>
+      <button
+        class="w-[188px] bg-[#F3F4F6] border-[3px] border-[#D2D5DA] hover:border-[#374151] font-medium py-[13px] px-[20px] rounded-[25px] text-[#9CA3AF] hover:text-[#374151] mt-[40px]"
+      >
+        Start your session
+      </button>
+    </form>
+  </main>
+</div>
+`;
