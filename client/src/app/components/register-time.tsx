@@ -2,7 +2,7 @@
 import Button from "./button";
 import { FormEvent } from "react";
 import { useSelector } from "react-redux";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { timeRecord, ConnectorState } from "../redux/types";
 import { useRouter } from "next/navigation";
 
@@ -24,16 +24,22 @@ const RegisterTime = () => {
   const currentTime = useSelector(
     (state: { connectors: ConnectorState }) => state.connectors.currentTime
   );
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (newTimeRecord: timeRecord) => {
       return createNewTime(newTimeRecord);
+    },
+    onSuccess: () => {
+      router.push("/leaderboard");
+    },
+    onSettled: (data, error, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
     },
   });
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const value = e.target.nickname.value;
     mutation.mutate({ name: value, seconds: currentTime });
-    router.push("/leaderboard");
   };
   return (
     <form onSubmit={handleSubmit} className="mt-5 flex flex-col items-center">

@@ -14,7 +14,7 @@ const Leaderboard = () => {
   const mutation = useMutation({
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
     },
   });
   return (
