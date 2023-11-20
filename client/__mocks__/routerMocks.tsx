@@ -32,3 +32,17 @@ jest.mock("next/navigation", () => {
     useServerInsertedHTML,
   };
 });
+
+jest.mock("@tanstack/react-query", () => ({
+  ...jest.requireActual("@tanstack/react-query"),
+  useQueryClient: () => ({
+    // setQueryData: jest.fn(() => ({ data: [{ label: 'Blue', id: 34 }] })),
+    // cancelQueries: jest.fn(),
+    // invalidateQueries: jest.fn(),
+    ...jest.requireActual("@tanstack/react-query").useQueryClient(),
+    getQueryData: jest
+      .fn()
+      .mockReturnValueOnce({ data: [{ id: 1, quantity: 1 }] })
+      .mockReturnValueOnce({ data: [{ id: 1, quantity: 2 }] }),
+  }),
+}));

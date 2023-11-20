@@ -66,6 +66,7 @@ exports[`renders homepage unchanged 1`] = `
     </header>
     <form
       class="flex flex-col items-center "
+      data-testid="form-selector"
     >
       <div
         class="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly"
@@ -97,7 +98,7 @@ exports[`renders homepage unchanged 1`] = `
         >
           <button
             class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
-            data-testid="button CCS"
+            data-testid="button-CCS"
           >
             <p
               class="text-sm"
@@ -117,7 +118,7 @@ exports[`renders homepage unchanged 1`] = `
           </button>
           <button
             class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
-            data-testid="button CHAdeMO"
+            data-testid="button-CHAdeMO"
           >
             <p
               class="text-sm"
@@ -137,7 +138,7 @@ exports[`renders homepage unchanged 1`] = `
           </button>
           <button
             class="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
-            data-testid="button AC"
+            data-testid="button-AC"
           >
             <p
               class="text-sm"
@@ -159,6 +160,7 @@ exports[`renders homepage unchanged 1`] = `
       </div>
       <button
         class="w-[188px] bg-[#F3F4F6] border-[3px] border-[#D2D5DA] hover:border-[#374151] font-medium py-[13px] px-[20px] rounded-[25px] text-[#9CA3AF] hover:text-[#374151] mt-[40px]"
+        data-testid="submit"
       >
         Start your session
       </button>

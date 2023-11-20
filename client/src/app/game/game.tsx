@@ -1,14 +1,13 @@
 "use client";
-import Cell from "../components/cell";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { pathRow, ConnectorState } from "../redux/types";
-import { useEffect, useState } from "react";
+import Cell from "../components/cell";
 import Timer from "../components/timer";
+import CellImage from "../components/cell-image";
 import RegisterTime from "../components/register-time";
-
 import { validFlow } from "../redux";
+import { pathRow, ConnectorState } from "../redux/types";
 
 const GameContainter = () => {
   const dispatch = useDispatch();
@@ -52,43 +51,32 @@ const GameContainter = () => {
   return (
     <>
       <Timer />
+
       <div className="grid grid-cols-5 gap-1">
-        <div className="flex justify-center items-center">
-          <Image
-            src={`/${selectedConnector?.image}.svg`}
-            alt="Fastned Logo"
-            width={38}
-            height={33}
-            priority
+        {selectedConnector && (
+          <CellImage
+            image={selectedConnector.image}
+            name={selectedConnector.name}
           />
-        </div>
+        )}
         {validPath["row1"].map((cable: pathRow) => {
           return <Cell row={"row1"} key={cable.key} cable={cable} />;
         })}
-        <div></div>
       </div>
 
       <div className="grid grid-cols-5 gap-1 mt-1">
-        <div></div>
+        <span></span>
         {validPath["row2"].map((cable: pathRow) => {
           return <Cell row={"row2"} key={cable.key} cable={cable} />;
         })}
-        <div></div>
       </div>
+
       <div className="grid grid-cols-5 gap-1 mt-1">
-        <div></div>
+        <span></span>
         {validPath["row3"].map((cable: pathRow) => {
           return <Cell row={"row3"} key={cable.key} cable={cable} />;
         })}
-        <div className="flex justify-center items-center">
-          <Image
-            src={`/electric-car.svg`}
-            alt="Fastned Logo"
-            width={38}
-            height={33}
-            priority
-          />
-        </div>
+        <CellImage image="electric-car" name="Electric car" />
       </div>
       {isValidFlow && <RegisterTime />}
     </>

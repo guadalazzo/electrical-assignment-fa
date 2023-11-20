@@ -42,7 +42,11 @@ const ConnectorSelector = () => {
   );
 
   return (
-    <form className="flex flex-col items-center " onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col items-center "
+      onSubmit={handleSubmit}
+      data-testid="form-selector"
+    >
       <div className="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly">
         <div className="flex flex-col items-center">
           <Image
@@ -70,7 +74,7 @@ const ConnectorSelector = () => {
           })}
         </div>
       </div>
-      <Button>Start your session</Button>
+      <Button dataTestid="submit">Start your session</Button>
       {error && <ErrorLabel title="Please select an option to continue" />}
     </form>
   );

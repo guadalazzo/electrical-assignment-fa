@@ -1,9 +1,9 @@
 /**
  * @jest-environment jsdom
  */
+// @ts-nocheck
 import { render, screen, fireEvent } from "@testing-library/react";
 import Home from "../src/app/page";
-
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import ConnectorSelector from "../src/app/components/connector-selector";

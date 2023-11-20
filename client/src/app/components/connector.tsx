@@ -50,7 +50,7 @@ const Connector = ({
 
   return (
     <button
-      data-testid={`button ${name}`}
+      data-testid={`button-${name}`}
       onClick={handleClick}
       className="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
     >
