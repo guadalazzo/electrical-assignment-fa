@@ -1,5 +1,5 @@
 "use client";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { timeRecord, ConnectorState } from "../redux/types";
 
@@ -9,16 +9,21 @@ async function getScores() {
 }
 
 const Leaderboard = () => {
-  const queryClient = useQueryClient();
-  const query = useQuery({ queryKey: ["leaderboard"], queryFn: getScores });
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["leaderboard"],
+    queryFn: getScores,
+  });
   const currentUser = useSelector(
     (state: { connectors: ConnectorState }) => state.connectors.currentUser
   );
-  const mutation = useMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
-    },
-  });
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -37,7 +42,7 @@ const Leaderboard = () => {
           </tr>
         </thead>
         <tbody>
-          {query?.data?.scores.map((score: timeRecord) => (
+          {data?.scores.map((score: timeRecord) => (
             <tr key={score.name} className="border-2 border-[#243c5a]">
               <td>{score.name} </td>
               <td>{score.seconds} </td>
