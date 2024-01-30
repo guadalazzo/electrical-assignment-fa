@@ -47,7 +47,7 @@ const Cell = ({
     <div
       onClick={handleClick}
       className={`flex justify-center items-center 
-      bg-white w-20 h-20 rounded text-center text-[57px] ${rotateValue}`}
+      bg-white w-20 h-20 rounded text-center text-xxl ${rotateValue}`}
     >
       {cable.value}
     </div>

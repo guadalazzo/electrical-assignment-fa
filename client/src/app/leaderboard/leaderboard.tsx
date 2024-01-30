@@ -37,15 +37,15 @@ const Leaderboard = () => {
 
   return (
     <>
-      <h2 className="text-xl w-[232px] text-center m-4">Leaderboard</h2>
+      <h2 className="text-xl w-232 text-center m-4">Leaderboard</h2>
       {currentUser && (
         <p>
           Congrats! <strong>{currentUser.name}</strong> you&apos;ve just scored
           <strong> {currentUser.seconds} seconds</strong>
         </p>
       )}
-      <table className="table-auto bg-yellow-100  text-center w-4/5 border-[3px] border-[#243c5a] rounded">
-        <thead className="border-[3px] border-[#243c5a]">
+      <table className="table-auto bg-yellow-100 text-center w-4/5 border-3 border-dark-blue rounded">
+        <thead className="border-3 border-dark-blue">
           <tr>
             <th>Name</th>
             <th>Seconds</th>
@@ -53,7 +53,7 @@ const Leaderboard = () => {
         </thead>
         <tbody>
           {data?.scores.map((score: timeRecord) => (
-            <tr key={score.name} className="border-2 border-[#243c5a]">
+            <tr key={score.name} className="border-2 border-dark-blue">
               <td>{score.name} </td>
               <td>{score.seconds} </td>
             </tr>

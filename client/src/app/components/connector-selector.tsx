@@ -47,7 +47,7 @@ const ConnectorSelector = () => {
       onSubmit={handleSubmit}
       data-testid="form-selector"
     >
-      <div className="flex flex-col items-center space-between bg-yellow-100 rounded border-[3px] border-[#243c5a] w-[296px] h-[288px] place-content-evenly">
+      <div className="flex flex-col items-center space-between bg-yellow-100 rounded border-3 border-dark-blue w-296 h-288 place-content-evenly">
         <div className="flex flex-col items-center">
           <Image
             src="/lightning.svg"
@@ -56,7 +56,7 @@ const ConnectorSelector = () => {
             height={56}
             priority
           />
-          <h2 className="text-xl w-[232px] text-center">
+          <h2 className="text-xl w-232 text-center">
             Select your <b>connector type...</b>
           </h2>
         </div>
