@@ -30,6 +30,9 @@ const config: Config = {
       white: "#FFFFFF",
       "dark-grey": "#374151",
       "dark-blue": "#243c5a",
+      salmon: "#fed7d7",
+      "salmon-dark": "#fc8181",
+      red: "#c53030",
     },
     extend: {
       margin: {
@@ -46,6 +49,7 @@ const config: Config = {
         "112": "112px",
         "288": "288px",
         "104": "104px",
+        "80": "80px",
       },
     },
   },

@@ -41,7 +41,7 @@ const Connector = ({
           height={33}
           priority
         />
-        <span className="px-4 bg-[#1F2937] rounded-[2px] text-white text-sm">
+        <span className="px-4 bg-grey-700 rounded-[2px] text-white text-sm">
           Selected
         </span>
       </button>
@@ -52,7 +52,7 @@ const Connector = ({
     <button
       data-testid={`button-${name}`}
       onClick={handleClick}
-      className="flex flex-col items-center place-content-evenly w-[84px] h-[80px] bg-white rounded font-medium"
+      className="flex flex-col items-center place-content-evenly w-84 h-80 bg-white rounded font-medium"
     >
       <p className="text-sm">{name}</p>
       <Image
