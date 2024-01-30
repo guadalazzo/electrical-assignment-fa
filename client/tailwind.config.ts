@@ -23,13 +23,19 @@ const config: Config = {
       "grey-400": "#9CA3AF",
       "grey-100": "#F3F4F6",
       "yellow-100": "#FEF9C3",
+      "grey-border": "#D2D5DA",
       white: "#FFFFFF",
     },
     extend: {
+      padding: { "44": "44px" },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      width: { "188": "188px" },
+      height: {
+        "112": "112px",
       },
     },
   },

@@ -1,5 +1,5 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getRandomInt } from "../utils";
+import { getValidPath } from "../utils";
 import { ConnectorState, ChangePositionPayload } from "./types";
 
 const initialState: ConnectorState = {
@@ -8,68 +8,7 @@ const initialState: ConnectorState = {
     { name: "CHAdeMO", image: "chademo", selected: false },
     { name: "AC", image: "ac", selected: false },
   ],
-  validPath: {
-    row1: [
-      {
-        key: "(0,0)",
-        value: "-",
-        position: getRandomInt(4),
-        validPositions: [0, 2],
-      },
-      {
-        key: "(0,1)",
-        value: "-",
-        position: getRandomInt(4),
-        validPositions: [0, 2],
-      },
-      {
-        key: "(0,2)",
-        value: "┐",
-        position: getRandomInt(4),
-        validPositions: [0],
-      },
-    ],
-    row2: [
-      {
-        key: "(1,0)",
-        value: "┌",
-        position: getRandomInt(4),
-        validPositions: [0],
-      },
-      {
-        key: "(1,1)",
-        value: "-",
-        position: getRandomInt(4),
-        validPositions: [0, 2],
-      },
-      {
-        key: "(1,2)",
-        value: "┘",
-        position: getRandomInt(4),
-        validPositions: [0],
-      },
-    ],
-    row3: [
-      {
-        key: "(2,0)",
-        value: "└",
-        position: getRandomInt(4),
-        validPositions: [0],
-      },
-      {
-        key: "(2,1)",
-        value: "-",
-        position: getRandomInt(4),
-        validPositions: [0, 2],
-      },
-      {
-        key: "(2,2)",
-        value: "-",
-        position: getRandomInt(4),
-        validPositions: [0, 2],
-      },
-    ],
-  },
+  validPath: getValidPath(),
 };
 
 const connectorSlice = createSlice({
@@ -111,6 +50,17 @@ const connectorSlice = createSlice({
     setNameAndTime: (state, action) => {
       state.currentUser = action.payload;
     },
+    cleanUp: (state) => {
+      state.currentUser = undefined;
+      state.currentTime = undefined;
+      state.validFlow = undefined;
+      state.connectorsList = [
+        { name: "CCS", image: "ccs", selected: false },
+        { name: "CHAdeMO", image: "chademo", selected: false },
+        { name: "AC", image: "ac", selected: false },
+      ];
+      state.validPath = getValidPath();
+    },
   },
 });
 
@@ -121,6 +71,7 @@ export const {
   validFlow,
   registerTime,
   setNameAndTime,
+  cleanUp,
 } = connectorSlice.actions;
 
 const connectorReducer = connectorSlice.reducer;

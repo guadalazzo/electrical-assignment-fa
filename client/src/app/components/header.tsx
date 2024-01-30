@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const Header = () => (
-  <header className="h-[112px] p-[44px]">
+  <header className="h-112 p-44">
     <Image
       src="/fastned.svg"
       alt="Fastned Logo"

@@ -1,21 +1,31 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 import { timeRecord, ConnectorState } from "../redux/types";
-
+import Button from "../components/button";
+import { cleanUp } from "../redux";
 async function getScores() {
   const response = await fetch(`api/leaderboard`);
   return response.json();
 }
 
 const Leaderboard = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: getScores,
   });
+
   const currentUser = useSelector(
     (state: { connectors: ConnectorState }) => state.connectors.currentUser
   );
+
+  const handleClick = () => {
+    router.push("/");
+    dispatch(cleanUp());
+  };
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -50,6 +60,7 @@ const Leaderboard = () => {
           ))}
         </tbody>
       </table>
+      <Button onClick={handleClick}>Try again</Button>
     </>
   );
 };
