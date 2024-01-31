@@ -27,14 +27,14 @@ To run the tests
 npm run test
 ```
 
-# The Fastned Charging Game
+# The F* Charging Game
 
-**This is the Fastned React assessment. The assessment is intended to give us insights into your technical abilities, 
+**This is the F* React assessment. The assessment is intended to give us insights into your technical abilities, 
 engineering approach, and general technical working habits. We view your performance on this assessment as indicative of
 the work you will deliver as a Front End engineer.**
 
 The assessment consists of an assignment to prepare beforehand and a presentation about your implementation of the 
-assignment at Fastned’s office or through video conference.
+assignment at F*’s office or through video conference.
 
 We ask you to treat the assessment confidential so we can use it again in the future. Please submit your solution 
 when you think it's ready.
@@ -42,7 +42,7 @@ when you think it's ready.
 ---------------
 
 ## The Charging Game
-You'll design and implement The Fastned Charging Game. The goal of the game is to provide electricity from our charger 
+You'll design and implement The F* Charging Game. The goal of the game is to provide electricity from our charger 
 to your electrical vehicle (EV) as fast as possible. When the user starts a new game, a timer will run to measure how 
 long it takes you to create an electric circuit from the **charger** to the **car**. As soon as the circuit is 
 established, the timer will stop and your name and time will be added to the leaderboard. The game will show the names 
