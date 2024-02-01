@@ -7,19 +7,7 @@ import { useRouter } from "next/navigation";
 import { setNameAndTime } from "../redux";
 import Button from "./button";
 import ErrorLabel from "./error-label";
-
-async function createNewTime({ name, seconds }: timeRecord) {
-  const data = JSON.stringify({ name, seconds });
-  const response = await fetch(`api/leaderboard`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: data,
-  });
-  return response.json();
-}
+import createNewTime from "../game/registerLeaderboard";
 
 const RegisterTime = () => {
   const [error, setError] = useState(false);

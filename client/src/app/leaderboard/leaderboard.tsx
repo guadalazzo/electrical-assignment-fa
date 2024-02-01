@@ -5,10 +5,7 @@ import { useRouter } from "next/navigation";
 import { timeRecord, ConnectorState } from "../redux/types";
 import Button from "../components/button";
 import { cleanUp } from "../redux";
-async function getScores() {
-  const response = await fetch(`api/leaderboard`);
-  return response.json();
-}
+import getScores from "./getScores";
 
 const Leaderboard = () => {
   const router = useRouter();
